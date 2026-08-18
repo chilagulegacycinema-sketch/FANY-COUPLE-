@@ -8,7 +8,6 @@
     * { box-sizing: border-box; }
   body { font-family: 'Segoe UI', Arial; color: white; margin: 0; height: 100vh; overflow: hidden; }
 
-  /* BACKGROUND INAJAA KWA KILA SIMU */
   body::before {
     content: "";
     position: fixed;
@@ -65,7 +64,6 @@
 </head>
 <body>
 
-  <!-- 1. SCREEN YA PIN -->
   <div id="login">
     <h1>FANY COUPLE</h1>
     <p>Weka neno la siri kuingia 💖</p>
@@ -74,7 +72,6 @@
     <div class="error" id="error">Neno la siri si sahihi!</div>
   </div>
 
-  <!-- 2. SCREEN YA KUCHAGUA PROFILE -->
   <div id="selectProfile" style="display:none;">
     <h2>Nani anatumia sasa?</h2>
     <div class="profile-choice">
@@ -89,7 +86,6 @@
     </div>
   </div>
 
-  <!-- 3. SCREEN YA CHAT -->
   <div id="app">
     <div class="header">
       <div class="header-left">
@@ -119,7 +115,7 @@
   import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
   import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
-  const SECRET_PASSWORD = "FANY";
+  const SECRET_PASSWORD = "FANY"; // Sasa inakubali FANY au fany
   const PROFILES = {
     "SmartBoe": "https://i.postimg.cc/N0Qn7GXm/file-00000a7e081f48a9f6e56641d5f90.png",
     "Baby Faah": "https://i.postimg.cc/br4MQQ0f/file-0000090a481f4b95cc5a1ddff62c0.png"
@@ -129,8 +125,8 @@
   let db, storage, chatRef;
 
   function checkLogin() {
-    const input = document.getElementById("password").value.toUpperCase();
-    if(input === SECRET_PASSWORD) {
+    const input = document.getElementById("password").value.trim();
+    if(input.toUpperCase() === SECRET_PASSWORD) { // HAPA NDO FIX
       document.getElementById("login").style.display = "none";
       document.getElementById("selectProfile").style.display = "flex";
     } else {
@@ -158,7 +154,6 @@
   }
 
   function startChat() {
-    // HII HAPA CONFIG KAMILI YA FIREBASE YAKO
     const firebaseConfig = {
       databaseURL: "https://chilx-live-4432d-default-rtdb.firebaseio.com"
     };
