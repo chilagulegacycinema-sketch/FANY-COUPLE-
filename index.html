@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<title>FANY COUPLE 💕</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  /*...weka CSS yote iliyopita hapa... */
+
+  /* BADILISHA HEADER YOTE KUWA HIVI */
+.header {
+    background: linear-gradient(90deg, #ff0099, #ff66cc);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo kushoto, Profile kulia */
+    box-shadow: 0 3px 15px #ff0099;
+  }
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+.app-logo {
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:3px solid #fff;
+    object-fit: cover;
+  }
+.header.title {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  /* HII NDIO SEHEMU MPYA YA PROFILE YA MTUMIAJI */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: 0.3s;
+  }
+.header-right:hover {
+    background: rgba(255,255,255,0.1);
+  }
+.header-profile {
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:2px solid #fff;
+    object-fit: cover;
+  }
+.header-info {
+    text-align: right;
+    font-size: 12px;
+  }
+.header-info.name {
+    font-weight: bold;
+    font-size: 14px;
+  }
+.header-info.logout {
+    color: #ffcccc;
+    font-size: 11px;
+  }
+
+  /*...weka CSS nyingine yote iliyobaki kama ilivyo... */
+</style>
+</head>
+<body>
+  <!--...login na selectProfile zibaki kama zilivyo... -->
+
+  <div id="app">
+    <!-- HEADER MPYA -->
+    <div class="header">
+      <!-- KUSHOTO: LOGO YA APP -->
+      <div class="header-left">
+        <img src="https://i.postimg.cc/k46vWLTz/file-0000052fc81f48073a7bd2bd68fb7.png" class="app-logo">
+        <div class="title">FANY COUPLE</div>
+      </div>
+
+      <!-- KULIA: PROFILE YA MTUMIAJI + LOGOUT -->
+      <div class="header-right" onclick="logout()">
+        <div class="header-info">
+          <div class="name" id="header-name">SmartBoe</div>
+          <div class="logout">Toka</div>
+        </div>
+        <img src="" class="header-profile" id="header-pic">
+      </div>
+    </div>
+
+    <div id="chat"></div>
+    <div class="input-area">
+      <input type="text" id="message" placeholder="Andika ujumbe...">
+      <label for="pic">🖼️</label>
+      <input type="file" id="pic" accept="image/*">
+      <button class="icon" id="rec">🎤</button>
+      <button class="icon" onclick="sendText()">➤</button>
+    </div>
+  </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+
+  const SECRET_PASSWORD = "FANY";
+  const PROFILES = {
+    "SmartBoe": "https://i.postimg.cc/N0Qn7GXm/file-00000a7e081f48a9f6e56641d5f90.png",
+    "Baby Faah": "https://i.postimg.cc/br4MQQ0f/file-0000090a481f4b95cc5a1ddff62c0.png"
+  };
+
+  let myName = ""; let myPic = "";
+  let db, storage, chatRef;
+
+  function checkLogin() {
+    const input = document.getElementById("password").value.toUpperCase();
+    if(input === SECRET_PASSWORD) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("selectProfile").style.display = "flex";
+    } else {
+      document.getElementById("error").style.display = "block";
+    }
+  }
+
+  window.selectUser = function(name) {
+    myName = name;
+    myPic = PROFILES[name];
+
+    // WEKA JINA NA PICHA JUU KWA HEADER
+    document.getElementById("header-name").innerText = myName;
+    document.getElementById("header-pic").src = myPic;
+
+    document.getElementById("selectProfile").style.display = "none";
+    document.getElementById("app").style.display = "flex";
+    startChat();
+  }
+
+  window.logout = function() {
+    document.getElementById("app").style.display = "none";
+    document.getElementById("login").style.display = "flex";
+    document.getElementById("password").value = "";
+    document.getElementById("chat").innerHTML = "";
+  }
+
+  function startChat() {
+    const firebaseConfig = {
+      apiKey: "WEKA_API_KEY_YAKO",
+      authDomain: "chilx-live-4432d.firebaseapp.com",
+      databaseURL: "https://chilx-live-4432d-default-rtdb.firebaseio.com",
+      projectId: "chilx-live-4432d",
+      storageBucket: "chilx-live-4432d.appspot.com",
+    };
+    const app = initializeApp(firebaseConfig);
+    db = getDatabase(app); storage = getStorage(app);
+    chatRef = ref(db, "fany-couple-chat");
+    loadMessages();
+  }
+
+  //...weka code yote mingine ya kutuma ujumbe, picha, voice kama ilivyo hapo juu...
+
+  function loadMessages() {
+    onChildAdded(chatRef, (data) => {
+      const msg = data.val(); const chatBox = document.getElementById("chat"); const div = document.createElement("div");
+      div.classList.add("msg");
+      const isMe = msg.name === myName;
+      if(isMe) div.classList.add("me");
+
+      let content = `
+        <div class="profile-mini">
+          <img src="${msg.pic}">
+          <div class="verified-badge">✓</div>
+        </div>
+        <div>
+          <div class="msg-info">${msg.name}</div>
+          <div class="bubble">`;
+
+      if(msg.type === "text") content += msg.content;
+      if(msg.type === "image") content += `<img class="chat-img" src="${msg.content}">`;
+      if(msg.type === "audio") content += `<audio controls src="${msg.content}"></audio>`;
+      content += `</div></div>`;
+
+      div.innerHTML = content; chatBox.appendChild(div); chatBox.scrollTop = chatBox.scrollHeight;
+    });
+  }
+</script>
+</body>
+</html>
