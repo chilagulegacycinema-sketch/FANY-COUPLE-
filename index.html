@@ -8,6 +8,7 @@
     * { box-sizing: border-box; }
   body { font-family: 'Segoe UI', Arial; color: white; margin: 0; height: 100vh; overflow: hidden; }
 
+  /* BACKGROUND INAJAA */
   body::before {
     content: "";
     position: fixed;
@@ -15,56 +16,62 @@
     width: 100%; height: 100%;
     background: url('https://i.postimg.cc/k46vWLTz/file-0000052fc81f48073a7bd2bd68fb7.png') no-repeat center;
     background-size: cover;
-    filter: brightness(0.35);
+    filter: brightness(0.3);
     z-index: -1;
   }
 
-  #login, #selectProfile { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
-  #login h1, #selectProfile h2 { font-size: 28px; letter-spacing: 3px; margin-bottom: 10px; text-shadow: 0 0 10px #ff0099; }
-  #login input { padding: 15px; width: 80%; max-width: 300px; border: none; border-radius: 25px; text-align: center; font-size: 18px; margin-bottom: 15px; }
-  #login button { padding: 15px 40px; border: none; border-radius: 25px; background: linear-gradient(90deg, #ff0099, #ff66cc); color: #fff; font-weight: bold; font-size: 18px; cursor: pointer; }
-.error { color: #ffcccc; margin-top: 10px; display: none; }
+  #login, #selectProfile { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); }
+  #login h1, #selectProfile h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 15px; text-shadow: 0 0 15px #ff0099; }
+  #login p { font-size: 16px; margin-bottom: 20px; }
+  #login input { padding: 16px; width: 85%; max-width: 320px; border: 2px solid #ff66cc; border-radius: 25px; text-align: center; font-size: 18px; margin-bottom: 15px; background: rgba(255,255,255,0.1); color: white; outline: none; }
+  #login button { padding: 16px 45px; border: none; border-radius: 25px; background: linear-gradient(90deg, #ff0099, #ff66cc); color: #fff; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: 0 0 20px #ff0099; }
+.error { color: #ff6666; margin-top: 10px; display: none; font-weight: bold; }
 
-.profile-choice { display: flex; gap: 30px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
-.profile-btn { text-align: center; cursor: pointer; transition: 0.3s; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 20px; }
-.profile-btn:hover { transform: scale(1.1); background: rgba(255,255,255,0.2); }
-.profile-btn img { width: 100px; height: 100px; border-radius: 50%; border: 4px solid #fff; object-fit: cover; }
-.profile-btn.name { margin-top: 8px; font-weight: bold; font-size: 16px; }
-.verified { color: #0099ff; font-size: 14px; }
+.profile-choice { display: flex; gap: 40px; margin-top: 30px; flex-wrap: wrap; justify-content: center; }
+.profile-btn { text-align: center; cursor: pointer; transition: 0.3s; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 25px; border: 2px solid transparent; }
+.profile-btn:hover { transform: scale(1.1); background: rgba(255,0,153,0.3); border: 2px solid #ff66cc; }
+.profile-btn img { width: 110px; height: 110px; border-radius: 50%; border: 4px solid #fff; object-fit: cover; box-shadow: 0 0 15px #ff0099; }
+.profile-btn.name { margin-top: 10px; font-weight: bold; font-size: 17px; }
+.verified { color: #0099ff; font-size: 15px; }
 
-  #app { display: none; flex-direction: column; height: 100%; background: rgba(0,0,0,0.3); }
-.header { background: rgba(255,0,153,0.85); padding: 10px 15px; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(10px); }
+  #app { display: none; flex-direction: column; height: 100%; }
+
+  /* HEADER TRANSPARENT KAMILI */
+.header { background: rgba(0,0,0,0.15); padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.15); position: sticky; top: 0; z-index: 10; }
 .header-left { display: flex; align-items: center; gap: 12px; }
-.app-logo { width:50px; height:50px; border-radius:50%; border:3px solid #fff; object-fit: cover; }
-.header.title { font-size: 18px; font-weight: bold; letter-spacing: 2px; }
-.header-right { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px 10px; border-radius: 20px; transition: 0.3s; }
-.header-right:hover { background: rgba(255,255,255,0.1); }
-.header-profile { width:40px; height:40px; border-radius:50%; border:2px solid #fff; object-fit: cover; }
-.header-info { text-align: right; font-size: 12px; }
-.header-info.name { font-weight: bold; font-size: 14px; }
-.header-info.logout { color: #ffcccc; font-size: 11px; }
+.app-logo { width:52px; height:52px; border-radius:50%; border:3px solid #fff; object-fit: cover; }
+.header.title { font-size: 19px; font-weight: bold; letter-spacing: 2px; text-shadow: 0 0 8px #000; }
+.header-right { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 6px 12px; border-radius: 25px; transition: 0.3s; }
+.header-right:hover { background: rgba(255,255,255,0.15); }
+.header-profile { width:42px; height:42px; border-radius:50%; border:2px solid #fff; object-fit: cover; }
+.header-info { text-align: right; font-size: 12px; text-shadow: 0 0 5px #000; }
+.header-info.name { font-weight: bold; font-size: 15px; }
+.header-info.logout { color: #ff99cc; font-size: 11px; }
 
-  #chat { flex: 1; overflow-y: auto; padding: 15px; }
-.msg { margin: 12px 0; max-width: 78%; display: flex; gap: 10px; }
+  /* CHAT SCROLL KAMILI */
+  #chat { flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 90px; }
+.msg { margin: 14px 0; max-width: 80%; display: flex; gap: 10px; animation: fadeIn 0.3s; }
+@keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
 .msg.me { margin-left: auto; flex-direction: row-reverse; }
-.profile-mini img { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid #ff66cc; }
-.verified-badge { color: #0099ff; font-size: 12px; position: relative; top: -25px; left: 20px; background: rgba(0,0,0,0.5); border-radius: 50%; padding: 0 3px; }
-.bubble { padding: 12px; border-radius: 18px; backdrop-filter: blur(5px); }
-.me.bubble { background: linear-gradient(135deg, rgba(255,0,153,0.9), rgba(255,102,204,0.9)); color: #fff; }
-.her.bubble { background: rgba(42,0,51,0.85); }
-.msg-info { font-size: 11px; margin-bottom: 4px; font-weight: bold; }
+.profile-mini img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid #ff66cc; }
+.verified-badge { color: #0099ff; font-size: 13px; position: relative; top: -28px; left: 22px; background: rgba(0,0,0,0.6); border-radius: 50%; padding: 1px 4px; }
+.bubble { padding: 13px 16px; border-radius: 20px; backdrop-filter: blur(10px); max-width: 100%; word-wrap: break-word; }
+.me.bubble { background: linear-gradient(135deg, rgba(255,0,153,0.95), rgba(255,102,204,0.95)); color: #fff; box-shadow: 0 3px 10px rgba(255,0,153,0.3); }
+.her.bubble { background: rgba(30,0,40,0.85); box-shadow: 0 3px 10px rgba(0,0,0,0.3); }
+.msg-info { font-size: 11px; margin-bottom: 5px; font-weight: bold; text-shadow: 0 0 3px #000; }
 
-.input-area { display: flex; padding: 12px; background: rgba(26,0,31,0.85); gap: 8px; align-items: center; backdrop-filter: blur(10px); }
-  input[type="text"] { flex: 1; padding: 14px; border: none; border-radius: 25px; background: rgba(42,0,51,0.8); color: white; outline: none; }
-  button.icon, label { padding: 12px 16px; border: none; border-radius: 25px; background: linear-gradient(90deg, #ff0099, #ff66cc); color: white; cursor: pointer; font-size: 18px; }
+.input-area { display: flex; padding: 12px; background: rgba(0,0,0,0.25); gap: 8px; align-items: center; backdrop-filter: blur(20px); position: fixed; bottom: 0; width: 100%; border-top: 1px solid rgba(255,255,255,0.15); }
+  input[type="text"] { flex: 1; padding: 15px; border: 2px solid rgba(255,102,204,0.3); border-radius: 25px; background: rgba(42,0,51,0.8); color: white; outline: none; font-size: 16px; }
+  button.icon, label { padding: 13px 17px; border: none; border-radius: 25px; background: linear-gradient(90deg, #ff0099, #ff66cc); color: white; cursor: pointer; font-size: 19px; box-shadow: 0 0 10px #ff0099; }
+  button.icon:active, label:active { transform: scale(0.9); }
   input[type="file"] { display: none; }
-  img.chat-img { max-width: 220px; border-radius: 12px; margin-top: 5px; }
-  audio { width: 220px; margin-top: 5px; border-radius: 20px; }
+  img.chat-img { max-width: 230px; border-radius: 15px; margin-top: 6px; border: 2px solid #ff66cc; }
+  audio { width: 230px; margin-top: 6px; border-radius: 20px; }
 </style>
 </head>
 <body>
 
-  <!-- 1. SCREEN YA PIN -->
+  <!-- 1. LOGIN -->
   <div id="login">
     <h1>FANY COUPLE</h1>
     <p>Weka neno la siri kuingia 💖</p>
@@ -73,7 +80,7 @@
     <div class="error" id="error">Neno la siri si sahihi!</div>
   </div>
 
-  <!-- 2. SCREEN YA KUCHAGUA PROFILE -->
+  <!-- 2. CHAGUA PROFILE -->
   <div id="selectProfile" style="display:none;">
     <h2>Nani anatumia sasa?</h2>
     <div class="profile-choice">
@@ -88,7 +95,7 @@
     </div>
   </div>
 
-  <!-- 3. SCREEN YA CHAT -->
+  <!-- 3. CHAT -->
   <div id="app">
     <div class="header">
       <div class="header-left">
@@ -127,24 +134,20 @@
   let myName = ""; let myPic = "";
   let db, storage, chatRef;
 
-  // HII NDIO FIX KUU - TUNATUMIA addEventListener BADALA YA onclick
   document.getElementById("loginBtn").addEventListener("click", checkLogin);
   document.getElementById("password").addEventListener("keypress", e => { if(e.key === "Enter") checkLogin(); });
-
   document.querySelectorAll(".profile-btn").forEach(btn => {
     btn.addEventListener("click", () => selectUser(btn.dataset.name));
   });
-
   document.getElementById("logoutBtn").addEventListener("click", logout);
   document.getElementById("sendBtn").addEventListener("click", sendText);
   document.getElementById("message").addEventListener("keypress", e => { if(e.key === "Enter") sendText(); });
 
   function checkLogin() {
     const input = document.getElementById("password").value.trim();
-    console.log("Umeweka:", input); // Kwa ajili ya kutest
     if(input.toUpperCase() === SECRET_PASSWORD) {
       document.getElementById("login").style.display = "none";
-      document.getElementById("selectProfile").style.display = "flex"; // HAPA INAENDA KUCHAGUA PROFILE
+      document.getElementById("selectProfile").style.display = "flex";
     } else {
       document.getElementById("error").style.display = "block";
       setTimeout(()=>{document.getElementById("error").style.display = "none"}, 3000);
@@ -157,7 +160,7 @@
     document.getElementById("header-name").innerText = myName;
     document.getElementById("header-pic").src = myPic;
     document.getElementById("selectProfile").style.display = "none";
-    document.getElementById("app").style.display = "flex"; // HAPA INAINGIA CHAT
+    document.getElementById("app").style.display = "flex";
     startChat();
   }
 
@@ -170,11 +173,12 @@
 
   function startChat() {
     const firebaseConfig = {
-      databaseURL: "https://chilx-live-4432d-default-rtdb.firebaseio.com"
+      databaseURL: "https://chilx-live-4432d-default-rtdb.firebaseio.com",
+      storageBucket: "chilx-live-4432d.appspot.com"
     };
     const app = initializeApp(firebaseConfig);
     db = getDatabase(app);
-    storage = getStorage("gs://chilx-live-4432d.appspot.com");
+    storage = getStorage(app);
     chatRef = ref(db, "fany-couple-chat");
     loadMessages();
   }
@@ -196,16 +200,18 @@
 
   document.getElementById("rec").onclick = async () => {
     if(!isRecording){
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
-      mediaRecorder.onstop = async () => {
-        const blob = new Blob(audioChunks, { type: 'audio/webm' });
-        const storageRef = sRef(storage, 'fany-voice/' + Date.now() + '.webm');
-        const snap = await uploadBytes(storageRef, blob); const url = await getDownloadURL(snap.ref);
-        push(chatRef, { name: myName, pic: myPic, type: "audio", content: url, time: Date.now() }); audioChunks = [];
-      };
-      mediaRecorder.start(); document.getElementById("rec").innerText = "⏹️"; isRecording = true;
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+        mediaRecorder.onstop = async () => {
+          const blob = new Blob(audioChunks, { type: 'audio/webm' });
+          const storageRef = sRef(storage, 'fany-voice/' + Date.now() + '.webm');
+          const snap = await uploadBytes(storageRef, blob); const url = await getDownloadURL(snap.ref);
+          push(chatRef, { name: myName, pic: myPic, type: "audio", content: url, time: Date.now() }); audioChunks = [];
+        };
+        mediaRecorder.start(); document.getElementById("rec").innerText = "⏹️"; isRecording = true;
+      } catch(err) { alert("Ruhusu Microphone kwenye browser mzee") }
     } else { mediaRecorder.stop(); document.getElementById("rec").innerText = "🎤"; isRecording = false; }
   }
 
